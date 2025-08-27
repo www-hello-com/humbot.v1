@@ -1,0 +1,104 @@
+.balanceCard {
+  composes: card from global;
+  margin-bottom: var(--spacing-md);
+}
+
+.balanceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.exchangeName {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.assetSymbol {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.balanceDetails {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.balanceItem {
+  text-align: center;
+}
+
+.balanceLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-xs);
+}
+
+.balanceValue {
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  font-family: "Monaco", "Menlo", monospace;
+}
+
+.usdValue {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-success);
+  font-family: "Monaco", "Menlo", monospace;
+}
+
+.emptyState {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  color: var(--color-text-secondary);
+}
+
+.loadingState {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  color: var(--color-text-secondary);
+}
+
+.errorState {
+  padding: var(--spacing-lg);
+  text-align: center;
+  color: var(--color-danger);
+  background-color: var(--color-danger-bg);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.retryButton {
+  margin-top: var(--spacing-md);
+}
+
+.totalValue {
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.totalLabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.totalAmount {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-family: "Monaco", "Menlo", monospace;
+}

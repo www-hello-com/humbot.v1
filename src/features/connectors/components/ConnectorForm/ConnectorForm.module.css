@@ -1,0 +1,114 @@
+.form {
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.formTitle {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+  color: var(--color-text-primary);
+}
+
+.formGrid {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.formActions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.submitButton {
+  min-width: 120px;
+}
+
+.resetButton {
+  min-width: 80px;
+}
+
+.errorList {
+  background-color: var(--color-danger-bg);
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.errorTitle {
+  color: var(--color-danger);
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+}
+
+.errorItem {
+  color: var(--color-danger);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.errorItem:last-child {
+  margin-bottom: 0;
+}
+
+.successMessage {
+  background-color: var(--color-success-bg);
+  border: 1px solid var(--color-success);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-success);
+}
+
+.connectorList {
+  margin-top: var(--spacing-xl);
+}
+
+.connectorItem {
+  composes: card from global;
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.connectorInfo {
+  flex: 1;
+}
+
+.connectorName {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--spacing-xs);
+}
+
+.connectorType {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-transform: capitalize;
+}
+
+.connectorStatus {
+  text-align: right;
+}
+
+.statusBadge {
+  composes: status-badge from global;
+}
+
+.lastConnected {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-xs);
+}

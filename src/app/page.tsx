@@ -1,95 +1,77 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from "next/link";
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const stats = [
+    { label: "Active Bots", value: "3", change: "+1" },
+    { label: "Total PnL", value: "$103.78", change: "+12.3%" },
+    { label: "Portfolio Value", value: "$30,232.24", change: "+2.1%" },
+    { label: "Connected Exchanges", value: "2", change: "0" },
+  ];
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  const quickActions = [
+    { href: "/bots", label: "View Bots", description: "Monitor your trading bots" },
+    { href: "/portfolio", label: "Check Portfolio", description: "View your balances" },
+    { href: "/connectors", label: "Add Exchange", description: "Connect new exchanges" },
+    { href: "/settings", label: "Settings", description: "Configure your dashboard" },
+  ];
+
+  return (
+    <div>
+      <h1>Dashboard Overview</h1>
+      
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+        gap: 'var(--spacing-md)', 
+        marginBottom: 'var(--spacing-xl)' 
+      }}>
+        {stats.map((stat) => (
+          <div key={stat.label} className="card">
+            <div style={{ 
+              fontSize: 'var(--font-size-sm)', 
+              color: 'var(--color-text-secondary)', 
+              marginBottom: 'var(--spacing-xs)' 
+            }}>
+              {stat.label}
+            </div>
+            <div style={{ 
+              fontSize: 'var(--font-size-2xl)', 
+              fontWeight: '700', 
+              marginBottom: 'var(--spacing-xs)' 
+            }}>
+              {stat.value}
+            </div>
+            <div style={{ 
+              fontSize: 'var(--font-size-sm)', 
+              color: stat.change.startsWith('+') ? 'var(--color-success)' : 'var(--color-text-secondary)' 
+            }}>
+              {stat.change !== "0" && stat.change}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <h2>Quick Actions</h2>
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
+        gap: 'var(--spacing-md)' 
+      }}>
+        {quickActions.map((action) => (
+          <Link key={action.href} href={action.href} className="card" style={{ textDecoration: 'none' }}>
+            <h3 style={{ marginBottom: 'var(--spacing-sm)' }}>
+              {action.label}
+            </h3>
+            <p style={{ 
+              color: 'var(--color-text-secondary)', 
+              margin: 0,
+              fontSize: 'var(--font-size-sm)' 
+            }}>
+              {action.description}
+            </p>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
