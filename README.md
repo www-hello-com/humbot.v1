@@ -138,17 +138,20 @@ The dashboard supports multiple hosting platforms. Choose the option that best f
 **Easiest deployment for Next.js apps**
 
 1. **Install Vercel CLI**:
+
 ```bash
 npm install -g vercel
 ```
 
 2. **Deploy from your project directory**:
+
 ```bash
 cd /Users/wuwu/HUMBOTv1/V1/hummingbot-master/hummingbot-dashboard
 vercel
 ```
 
 3. **Follow the prompts**:
+
    - Link to your Vercel account
    - Set project name: `hummingbot-dashboard`
    - Deploy to production
@@ -163,11 +166,13 @@ vercel
 **Great for static sites with API**
 
 1. **Install Netlify CLI**:
+
 ```bash
 npm install -g netlify-cli
 ```
 
 2. **Build and deploy**:
+
 ```bash
 npm run build
 netlify deploy --prod --dir=.next
@@ -183,20 +188,22 @@ netlify deploy --prod --dir=.next
 **Free hosting with GitHub**
 
 1. **Modify `next.config.ts` for static export**:
+
 ```typescript
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  output: "export",
   trailingSlash: true,
   images: {
-    unoptimized: true
-  }
-}
+    unoptimized: true,
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
 ```
 
 2. **Build and export**:
+
 ```bash
 npm run build
 ```
@@ -208,6 +215,7 @@ npm run build
 **For complete control**
 
 1. **Create Dockerfile**:
+
 ```dockerfile
 FROM node:18-alpine
 WORKDIR /app
@@ -220,6 +228,7 @@ CMD ["npm", "start"]
 ```
 
 2. **Build and run**:
+
 ```bash
 docker build -t hummingbot-dashboard .
 docker run -p 3000:3000 -e NEXT_PUBLIC_API_BASE=http://your-api:8080 hummingbot-dashboard
