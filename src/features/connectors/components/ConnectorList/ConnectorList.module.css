@@ -1,4 +1,4 @@
-.list {
+.grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 16px;
@@ -9,18 +9,13 @@
 .pad {
   padding: 16px;
 }
-.h {
-  margin: 0 0 6px;
+.name {
   font-weight: 700;
+  margin: 0 0 8px;
 }
-.row {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 4px;
-  font-variant-numeric: tabular-nums;
-}
-.label {
+.desc {
   color: var(--muted);
+  margin: 0;
 }
 @media (max-width: 900px) {
   .item {

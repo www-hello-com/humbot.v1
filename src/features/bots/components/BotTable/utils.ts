@@ -1,28 +1,10 @@
-import type { Bot } from '@/features/bots/schemas';
-import { formatUsd } from '@/utils/format';
+export type BotRow = { id: string; name: string; status: "running"|"stopped"|"error"; pnl?: number; updatedAt?: string };
 
-/**
- * Get CSS class name for PnL value
- */
-export function pnlClass(pnl?: number): string {
-  if (pnl === undefined || pnl === null) return 'pnl-neutral';
-  if (pnl > 0) return 'pnl-positive';
-  if (pnl < 0) return 'pnl-negative';
-  return 'pnl-neutral';
+export function pnlClass(n?: number){
+  if (n == null) return "";
+  return n >= 0 ? "pos" : "neg";
 }
-
-/**
- * Format PnL value for display
- */
-export function pnlText(pnl?: number): string {
-  if (pnl === undefined || pnl === null) return 'N/A';
-  const formatted = formatUsd(pnl);
-  return pnl > 0 ? `+${formatted}` : formatted;
-}
-
-/**
- * Get status badge className
- */
-export function getStatusClassName(status: Bot['status']): string {
-  return `status-badge ${status}`;
+export function fmtUsd(n?: number){
+  if (n == null) return "—";
+  return new Intl.NumberFormat(undefined, { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(n);
 }

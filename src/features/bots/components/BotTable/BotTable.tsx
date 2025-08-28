@@ -1,79 +1,26 @@
-import type { Bot } from '@/features/bots/schemas';
-import { formatDate } from '@/utils/format';
-import { pnlClass, pnlText, getStatusClassName } from './utils';
-import styles from './BotTable.module.css';
+"use client";
+import s from "./BotTable.module.css";
+import { type BotRow, pnlClass, fmtUsd } from "./utils";
 
-interface BotTableProps {
-  bots: Bot[];
-  loading?: boolean;
-  error?: string | null;
-  onRetry?: () => void;
-}
-
-export default function BotTable({ bots, loading, error, onRetry }: BotTableProps) {
-  if (loading) {
-    return (
-      <div className={styles.tableContainer}>
-        <div className={styles.loadingState}>
-          Loading bots...
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className={styles.errorState}>
-        <div>Error loading bots: {error}</div>
-        {onRetry && (
-          <button 
-            onClick={onRetry} 
-            className={`btn btn-primary ${styles.retryButton}`}
-          >
-            Retry
-          </button>
-        )}
-      </div>
-    );
-  }
-
-  if (bots.length === 0) {
-    return (
-      <div className={styles.tableContainer}>
-        <div className={styles.emptyState}>
-          <div className={styles.emptyStateTitle}>No bots found</div>
-          <div>Start by creating your first trading bot.</div>
-        </div>
-      </div>
-    );
-  }
-
+export default function BotTable({ rows }: { rows: BotRow[] }) {
   return (
-    <div className={styles.tableContainer}>
-      <table className={`table ${styles.table}`}>
-        <thead>
+    <div className="card" style={{ padding: 16 }}>
+      <table className={s.table}>
+        <thead className={s.thead}>
           <tr>
-            <th>Name</th>
-            <th>Status</th>
-            <th>PnL</th>
-            <th>Last Updated</th>
+            <th className={s.th}>Name</th>
+            <th className={s.th}>Status</th>
+            <th className={`${s.th} ${s.right}`}>PnL</th>
+            <th className={s.th}>Updated</th>
           </tr>
         </thead>
         <tbody>
-          {bots.map((bot) => (
-            <tr key={bot.id}>
-              <td className={styles.nameCell}>{bot.name}</td>
-              <td>
-                <span className={getStatusClassName(bot.status)}>
-                  {bot.status}
-                </span>
-              </td>
-              <td className={`${styles.pnlCell} ${pnlClass(bot.pnl)}`}>
-                {pnlText(bot.pnl)}
-              </td>
-              <td className={styles.timeCell}>
-                {bot.updatedAt ? formatDate(bot.updatedAt) : 'N/A'}
-              </td>
+          {rows.map(r=>(
+            <tr key={r.id}>
+              <td className={s.td}>{r.name}</td>
+              <td className={s.td}>{r.status}</td>
+              <td className={`${s.td} ${s.right} ${s[pnlClass(r.pnl)]}`}>{fmtUsd(r.pnl)}</td>
+              <td className={s.td}>{r.updatedAt ?? "—"}</td>
             </tr>
           ))}
         </tbody>

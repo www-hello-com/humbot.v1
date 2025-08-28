@@ -1,0 +1,46 @@
+.wrap {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+.cardPad {
+  padding: 16px;
+}
+.left {
+  grid-column: span 6;
+}
+.right {
+  grid-column: span 6;
+}
+.row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #2a3340;
+  background: #0f141a;
+  color: var(--fg);
+}
+.btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #2a3340;
+  background: #18202a;
+  color: var(--fg);
+  cursor: pointer;
+}
+@media (max-width: 900px) {
+  .left,
+  .right {
+    grid-column: 1 / -1;
+  }
+}

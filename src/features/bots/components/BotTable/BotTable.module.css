@@ -1,56 +1,24 @@
 .table {
-  /* Inherits styles from globals.css */
+  width: 100%;
+  border-collapse: collapse;
 }
-
-.tableContainer {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  background-color: var(--color-bg-secondary);
-  border: 1px solid var(--color-border);
+.thead {
+  background: var(--card-bg);
+  color: var(--muted);
 }
-
-.emptyState {
-  padding: var(--spacing-2xl);
-  text-align: center;
-  color: var(--color-text-secondary);
+.th,
+.td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #1f2937;
+  text-align: left;
 }
-
-.emptyStateTitle {
-  font-size: var(--font-size-lg);
-  margin-bottom: var(--spacing-sm);
-  color: var(--color-text-primary);
+.right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }
-
-.loadingState {
-  padding: var(--spacing-2xl);
-  text-align: center;
-  color: var(--color-text-secondary);
-}
-
-.errorState {
-  padding: var(--spacing-2xl);
-  text-align: center;
-  color: var(--color-danger);
-  background-color: var(--color-danger-bg);
-  border-radius: var(--radius-md);
-  margin-bottom: var(--spacing-md);
-}
-
-.retryButton {
-  margin-top: var(--spacing-md);
-}
-
-.nameCell {
-  font-weight: 600;
-  color: var(--color-text-primary);
-}
-
-.pnlCell {
-  font-weight: 500;
-  font-family: "Monaco", "Menlo", monospace;
-}
-
-.timeCell {
-  color: var(--color-text-secondary);
-  font-size: var(--font-size-sm);
-}
+.pos {
+  color: #32d583;
+} /* green */
+.neg {
+  color: #ef4444;
+} /* red */
