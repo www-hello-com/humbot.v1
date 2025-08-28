@@ -1,77 +1,34 @@
-import Link from "next/link";
-
 export default function Home() {
-  const stats = [
-    { label: "Active Bots", value: "3", change: "+1" },
-    { label: "Total PnL", value: "$103.78", change: "+12.3%" },
-    { label: "Portfolio Value", value: "$30,232.24", change: "+2.1%" },
-    { label: "Connected Exchanges", value: "2", change: "0" },
-  ];
-
-  const quickActions = [
-    { href: "/bots", label: "View Bots", description: "Monitor your trading bots" },
-    { href: "/portfolio", label: "Check Portfolio", description: "View your balances" },
-    { href: "/connectors", label: "Add Exchange", description: "Connect new exchanges" },
-    { href: "/settings", label: "Settings", description: "Configure your dashboard" },
+  const cards = [
+    { title: "Active Bots", value: "3", delta: "+1" },
+    { title: "Total PnL", value: "$103.78", delta: "+12.3%" },
+    { title: "Portfolio Value", value: "$30,232.24", delta: "+2.1%" },
+    { title: "Connected Exchanges", value: "2", delta: "" },
   ];
 
   return (
-    <div>
+    <main>
       <h1>Dashboard Overview</h1>
-      
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-        gap: 'var(--spacing-md)', 
-        marginBottom: 'var(--spacing-xl)' 
-      }}>
-        {stats.map((stat) => (
-          <div key={stat.label} className="card">
-            <div style={{ 
-              fontSize: 'var(--font-size-sm)', 
-              color: 'var(--color-text-secondary)', 
-              marginBottom: 'var(--spacing-xs)' 
-            }}>
-              {stat.label}
-            </div>
-            <div style={{ 
-              fontSize: 'var(--font-size-2xl)', 
-              fontWeight: '700', 
-              marginBottom: 'var(--spacing-xs)' 
-            }}>
-              {stat.value}
-            </div>
-            <div style={{ 
-              fontSize: 'var(--font-size-sm)', 
-              color: stat.change.startsWith('+') ? 'var(--color-success)' : 'var(--color-text-secondary)' 
-            }}>
-              {stat.change !== "0" && stat.change}
-            </div>
+      <div className="grid" style={{ marginTop: 16 }}>
+        {cards.map((c, i) => (
+          <div key={i} className="card col-3" style={{ padding: 16 }}>
+            <h2>{c.title}</h2>
+            <div style={{ fontSize: 24, fontWeight: 800, marginTop: 8 }}>{c.value}</div>
+            {c.delta && <div style={{ color: "#8fe1a0", marginTop: 6 }}>{c.delta}</div>}
           </div>
         ))}
       </div>
 
-      <h2>Quick Actions</h2>
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-        gap: 'var(--spacing-md)' 
-      }}>
-        {quickActions.map((action) => (
-          <Link key={action.href} href={action.href} className="card" style={{ textDecoration: 'none' }}>
-            <h3 style={{ marginBottom: 'var(--spacing-sm)' }}>
-              {action.label}
-            </h3>
-            <p style={{ 
-              color: 'var(--color-text-secondary)', 
-              margin: 0,
-              fontSize: 'var(--font-size-sm)' 
-            }}>
-              {action.description}
-            </p>
-          </Link>
-        ))}
+      <div className="grid" style={{ marginTop: 20 }}>
+        <div className="card col-6" style={{ padding: 16 }}>
+          <h2>Quick Actions</h2>
+          <p><a href="/bots">View Bots</a> · <a href="/portfolio">Check Portfolio</a></p>
+        </div>
+        <div className="card col-6" style={{ padding: 16 }}>
+          <h2>Setup</h2>
+          <p><a href="/connectors">Add Exchange</a> · <a href="/settings">Settings</a></p>
+        </div>
       </div>
-    </div>
+    </main>
   );
 }
